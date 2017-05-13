@@ -1,0 +1,187 @@
+<html>
+<!-- Dustin Wolf Cs177=0101 11.14.06 -->
+<!-- Javascript Strings and Arrays   -->
+<head>
+ <title> CS177 Project4 Airline Reservation System </title>
+ <script type="text/javascript">
+ 
+	function setUpArray()                   /////////////////////////////////////////////////////////////////////
+	{                                       // This function sets up an Array Matrix 6x4  Dustin Wolf 12.04.06 //
+	                                        // Returns the array seat                     Dustin Wolf 12.04.06 //
+		var seat = new Array(6);            // array the size of 6                        Dustin Wolf 12.04.06 //
+		var g = 0;							// counter is set to zero                     Dustin Wolf 12.04.06 //
+		while(g < seat.length)
+		{                                   // while loop creates the row                 Dustin Wolf 12.04.06 //
+			var h = 0;                      // counter is set to zero                     Dustin Wolf 12.04.06 //
+			seat[g] = new Array(4)          // array the size of 4                        Dustin Wolf 12.04.06 //
+			while(h < seat[g].length)
+			{                               // while loop creates the columns             Dustin Wolf 12.04.06 //
+				seat[g][h] = "";            // sets the row and column to an empty string Dustin Wolf 12.04.06 //
+				h++;                        // adds 1 to counter h                        Dustin Wolf 12.04.06 //
+			}
+			g++;                            // adds 1 to counter g                        Dustin Wolf 12.04.06 //
+		}
+		return seat;                        // return value is the array named seat       Dustin Wolf 12.04.06 //
+	}                                       /////////////////////////////////////////////////////////////////////
+	
+	function printSeatingChart(flightnumber)                                  //////////////////////////////////////////////////////////////////////////////////
+  	{                                                                         // This function sets up the table of images of the flight Dustin Wolf 12.04.06 //
+	  document.write("<table border=\"1\" align=\"center\">"); 
+        document.write("<tr>");
+        document.write("<th colspan=\"5\"><h2> Flight " + flightNum + "</h2></th>");// uses the var flightNum from the prompt below      Dustin Wolf 12.04.06 //
+        document.write("</tr>");
+        document.write("<tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>");
+        var i = 0;                                                            // counter is set to zero                                  Dustin Wolf 12.04.06 //
+        while(i < 6)
+        {                                                                     // while loop adds images for the rows                     Dustin Wolf 12.04.06 //
+	        var j = 0;                                                        // counter is set to zero                                  Dustin Wolf 12.04.06 //
+	        var colNum = i + 1;                                               // this sets the numbers for the column                    Dustin Wolf 12.04.06 //
+	        document.write("<tr>");
+	        document.write("<th>" + colNum + "</th>");  
+  	        while(j < 4)
+  	        {                                                                 // while loop adds images for the column                   Dustin Wolf 12.04.06 //
+	  	        document.write("<td>");                                       // onClick function enterSeatNo and adds the image         Dustin Wolf 12.04.06 //
+	  	        document.write("<a onClick=\"enterSeatNo(" + i + "," + j + ");\"><img src=\"empty.jpg\" name=\"emptyseat\" /></a>");
+	  	        j++;                                                          // adds 1 to counter                                       Dustin Wolf 12.04.06 //
+  	        }
+  	        document.write("</td></tr>");
+  	        i++;                                                              // adds 1 to counter                                       Dustin Wolf 12.04.06 //
+	    }                                                                     ////////////////////////////////////////////////////////////////////////////////// 
+	    document.write("</table>");
+    }
+    
+	function enterSeatNo(i, j)                                 ///////////////////////////////////////////////////////////////////////////////////////
+	{                                                          // This function entered the number of Row, Column when clicked Dustin Wolf 12.04.06 // 
+		var row = i + 1;                                       // row is i + 1 to show the index starts at 0                   Dustin Wolf 12.04.06 //
+		var col = j + 1;                                       // col is j + 1 to show the index starts at 0                   Dustin Wolf 12.04.06 //
+		document.airline.seatNum.value = row + "-" + col;	   // write in the text box the row, and col                       Dustin Wolf 12.04.06 //
+	}                                                          ///////////////////////////////////////////////////////////////////////////////////////
+	
+	function getSeatInfo()
+	{                                                          // This function checks the seat and tells whos sitting in it   Dustin Wolf 12.04.06 //
+		var currSeat = document.airline.seatNum.value;         // Pulls information from text box                              Dustin Wolf 12.04.06 //
+		var rowSeat = currSeat.charAt(0) - 1;                  // Takes character at index 0 and subtracts 1                   Dustin Wolf 12.04.06 //
+		var row = parseInt(currSeat.charAt(0));                // parses the character into a number                           Dustin Wolf 12.04.06 //
+		rowSeat = parseInt(rowSeat);						   // This varible writes in the textarea the value of row         Dustin Wolf 12.05.06 //	
+		var colSeat = currSeat.charAt(2) - 1;                  // Takes character at index 2 and subtracts 1                   Dustin Wolf 12.05.06 //
+		var column = parseInt(currSeat.charAt(2));             // parses the character into a number                           Dustin Wolf 12.05.06 //
+		colSeat = parseInt(colSeat);                           // This varible writes in the textarea the value of column      Dustin Wolf 12.05.06 //
+        	var nameOfPassenger = seat[rowSeat][colSeat];          // nameOfPassenger is set to the value in seat                  Dustin Wolf 12.05.06 //
+		if(rowSeat < 0 || rowSeat > 6 || colSeat < 0 || colSeat > 4) 
+		{                                                      // If statement for values not in the array                     Dustin Wolf 12.05.06 //
+			document.airline.passInfo.value = "The entered seat is invalid.";
+		}
+		if(nameOfPassenger == "")
+		{													   // If statement for nameOfPassenger being empty                 Dustin Wolf 12.05.06 //
+			document.airline.passInfo.value = "The selected seat is unoccupied.";
+		}
+		else
+		{                                                      // else statement for if nameOfPassenger has an entry           Dustin Wolf 12.05.06 //
+			document.airline.passInfo.value = "The current passenger in seat " + row + "-" + column + " is " + nameOfPassenger;
+		}
+	}                                                          ///////////////////////////////////////////////////////////////////////////////////////
+	
+	function assignSeatInfo()                                  ///////////////////////////////////////////////////////////////////////////////
+	{                                                          // function that assigns name of passenger to the array Dustin Wolf 12.05.06 //
+	      var currSeat = document.airline.seatNum.value;         // pulls number from text box and sets it to currSeat   Dustin Wolf 12.05.06 //
+		var rowSeat = currSeat.charAt(0);                      // pulls character from index 0 and sets to rowSeat     Dustin Wolf 12.05.06 //
+		rowSeat = parseInt(rowSeat) - 1;                       // parses rowSeat into a number and subtracts 1         Dustin Wolf 12.05.06 //
+		var colSeat = currSeat.charAt(2);                      // pulls character from index 2 and sets to colSeat     Dustin Wolf 12.05.06 //
+		colSeat = parseInt(colSeat) - 1;                       // parses colSeat into a number and subtracts 1         Dustin Wolf 12.05.06 //
+		var nameOfPassenger = seat[rowSeat][colSeat];          // Sets seat array into nameOfPassenger                 Dustin Wolf 12.05.06 //
+		if(rowSeat < 0 || rowSeat > 6 || colSeat < 0 || colSeat > 4) 
+		{                                                      // If statement for values not in the array             Dustin Wolf 12.05.06 //
+			document.airline.passInfo.value = "The entered seat is invalid.";
+		}
+		if(nameOfPassenger != "")                              // If statement if nameOfPassenger is not empty         Dustin Wolf 12.05.06 //
+		{                                                      // confirms your request to overwrite                   Dustin Wolf 12.05.06 //
+			assign = confirm("This seat is already assigned. Do you wish to overwrite?");
+			if(assign == "0");                                 // By choosing cancel, the value is 0                   Dustin Wolf 12.05.06 //
+			{
+				nameOf = nameOfPassenger;                      // Assigns nameOf as the value in the array             Dustin Wolf 12.05.06 //
+				document.airline.passInfo.value = "The seat is already occupied";
+			}                                                  // Write the seats already occupied in the textarea     Dustin Wolf 12.05.06 //
+			if(assign == "1")                                  // By choosing ok, the value is 1                       Dustin Wolf 12.05.06 //
+			{
+				nameOf = prompt("Enter passenger's name:", "");// prompt asking for passengers name                    Dustin Wolf 12.05.06 //
+				while(nameOf == "")                         
+				{                                              // While loop making sure that the seat is assigned     Dustin Wolf 12.05.06 //
+					nameOf = prompt("Enter passenger's name:", "");
+				}                                              // prompt asking for passengers name                    Dustin Wolf 12.05.06 //
+			}
+		}
+		else
+		{                                                      // else when the array is empty                         Dustin Wolf 12.05.06 //
+			nameOf = prompt("Enter passenger's name:", "");    // prompt asking for passengers name                    Dustin Wolf 12.05.06 //
+			while(nameOf == "")                                // prompt asking for passengers name                    Dustin Wolf 12.05.06 //
+				{
+					nameOf = prompt("Enter passenger's name:", "");
+				}                                              // prompt asking for passengers name                    Dustin Wolf 12.05.06 //
+		}
+		if(nameOf != null)                                     // If statement, it will run as long as its not Null    Dustin Wolf 12.05.06 //
+		{
+			seat[rowSeat][colSeat] = nameOf;                   // sets the value of the nameOf into the Array          Dustin Wolf 12.05.06 //
+			var imageNumber = (4 * rowSeat) + (colSeat);       // goes thro the table and shows the local of the pic   Dustin Wolf 12.05.06 //
+			document.images[imageNumber].src="full.jpg"        // Changes the pic from empty.jpg to full.jpg           Dustin Wolf 12.05.06 //
+		}
+	}                                                          ///////////////////////////////////////////////////////////////////////////////
+	  
+	function deleteSeatInfo()                                  ///////////////////////////////////////////////////////////////////////////////
+	{                                                          // This function deletes a name from the array          Dustin Wolf 12.05.06 //
+		var currSeat = document.airline.seatNum.value;         // pulls number from text box and sets it to currSeat   Dustin Wolf 12.05.06 //
+		var rowSeat = currSeat.charAt(0);                      // pulls character from index 0 and sets to rowSeat     Dustin Wolf 12.05.06 //
+		    rowSeat = parseInt(rowSeat)-1;                     // parses rowSeat into a number and subtracts 1         Dustin Wolf 12.05.06 //
+		var colSeat = currSeat.charAt(2);                      // pulls character from index 2 and sets to colSeat     Dustin Wolf 12.05.06 //
+		    colSeat = parseInt(colSeat)-1;                     // parses colSeat into a number and subtracts 1         Dustin Wolf 12.05.06 //
+		var delSeat = seat[rowSeat][colSeat];                  // sets value of array into delSeat                     Dustin Wolf 12.05.06 //
+		if(rowSeat < 0 || rowSeat > 6 || colSeat < 0 || colSeat > 4) 
+		{                                                      // If statement for values not in the array             Dustin Wolf 12.05.06 //
+			document.airline.passInfo.value = "The entered seat is invalid.";
+		}
+		if(delSeat != "")                                      // if statement. if delSeat is not empty                Dustin Wolf 12.05.06 //
+		{                                                      // confirm if you wanna delete the seat                 Dustin Wolf 12.05.06 //
+			del = confirm("This seat is assigned to " + delSeat + ". Do you wish to delete?");
+			if(del == "0")                                     // Cancel is value 0                                    Dustin Wolf 12.05.06 // 
+			{
+				nameOf = delSeat;                              // keeps the value of nameOf as the vale in the array   Dustin Wolf 12.05.06 //
+				document.airline.passInfo.value = "The operation was cancelled.";
+			}                                                  // writes the operation cancellation in the textarea    Dustin Wolf 12.05.06 //
+			if(del == "1")                                     // Ok is value 1                                        Dustin Wolf 12.05.06 //
+			{ 
+				nameOf = "";		                           // sets value of nameOf as empty                        Dustin Wolf 12.05.06 //
+				if(nameOf != null)                             // if statement. nameOf is not null                     Dustin Wolf 12.05.06 //
+				{
+					seat[rowSeat][colSeat] = nameOf;           // sets array value as the variable nameOF              Dustin Wolf 12.05.06 //
+					var imageNumber = (4 * rowSeat) + (colSeat); // goes thro the table and shows the local of the pic Dustin Wolf 12.05.06 //
+					document.images[imageNumber].src="empty.jpg" // changes the pic from full to empty                 Dustin Wolf 12.05.06 //
+				}
+			}
+		}
+		else                                                   // else, meaning the value is already empty             Dustin Wolf 12.05.06 //
+		{
+			alert("This seat needs to be assigned.");          // alerts the viewer that it still needs to be assigned Dustin Wolf 12.05.06 //
+		}	
+	}                                                          ///////////////////////////////////////////////////////////////////////////////
+  </script>
+ </head>
+ <body>
+  <h1 align="center"> Airline Reservation System </h1>
+  
+  <script type="text/javascript">
+   var seat = setUpArray();
+   var flightNum = prompt("What flight number would you like to see?", "100");
+   flightNum = parseInt(flightNum);
+   printSeatingChart(flightNum);
+  </script>
+  <div align="center">
+  <form name="airline">
+   Seat Number(row-column)<br />
+   <input type="text" name="seatNum" value="1-1" /><br />
+   <input type="button" value="Current Seat Info" onClick="getSeatInfo();" />
+   <input type="button" value="Assign Seat" onClick="assignSeatInfo();" />
+   <input type="button" value="Delete Seat Assignment" onClick="deleteSeatInfo();" /><br />
+   <textarea name="passInfo" rows="10" cols="80" wrap="virtual"></textarea>
+   </form>
+  </div>
+ </body>
+</html>

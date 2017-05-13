@@ -1,0 +1,31 @@
+<html>
+ <!-- Dewolf_index.html cs177=0101 9.28.06 -->
+ <!--           Assignment 2               -->
+
+ <head>
+  <title>CS177 Project 2 - The Globo Gym Nutrition Calculator </title>
+ <!-- This script type is calling the library globo.js -->
+   <script type="text/javascript" src="globo.js">
+   </script>
+ </head>
+ 
+ <body>
+  <h2>The Globo Gym Nutrition Calculator</h2>
+  <form name="globoForm">
+     Are you (1)Male or (2)Female (Enter number):
+        <input type="text" name="gender" size=10 value="1" /> <br /><br />
+     What is your weight(in pounds):
+        <input type="text" name="weight" size=10 value="155" /> <br /><br />
+     What is your height(in inches):
+        <input type="text" name="height" size=10 value="68" /> <br /><br />
+     What is your age:
+        <input type="text" name="age" size=10 value="24" /> <br /><br />
+     What is your workout goal (Enter appropriate number (1)Bodybuilding (2)Power & Speed (3)Dieting):
+        <input type="text" name="goal" size=10 value="1" /> <br /> <br />
+     What is your ideal weight:
+     	<input type="text" name="idealWeight" size=10 value="154" />
+        <input type="button" value="Calculate Ideal Weight" onClick="WeightCalculator();" /> <br /> <br />
+        <input type="button" value="Calculate Calories" onClick="Convert();" />
+  </form>
+ </body>
+</html>

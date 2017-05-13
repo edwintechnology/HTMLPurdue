@@ -1,0 +1,51 @@
+<html>
+
+<!--                 dewolf_index.html                -->
+<!--        Dustin Wolf      CS177 0101     09.14.06  -->
+<!--   This is our first project - Virtual Aquarium   -->
+<!--        By means of HTML and Java Scripting       -->
+ 
+
+ <head>
+  <title>CS177 Project 1 - Virtual Aquarium</title>
+ </head>
+
+ <body>
+  <script type="text/javascript">
+    animalNumber = prompt("Please select a sea animal from the following list \(enter a number\):"
+                       + "\n\n \(1\) Queen Angelfish" 
+                       + "\n \(2\) Humpback Anglerfish"
+                       + "\n \(3\) Blue Whale"
+                       + "\n \(4\) Clown Fish"
+                       + "\n \(5\) Bottlenose Dolphin"
+                       + "\n \(6\) Giant Squid"
+                       + "\n \(7\) Moray Eel"
+                       + "\n \(8\) Leafy Sea Dragon", "4");
+    
+    commonName = prompt("Enter Sea Animal's Name", "Clown Fish");
+    kingdom = prompt("Enter Sea Animal's Kingdom", "Animalia");
+    phylum = prompt("Enter Sea Animal's Phylum", "Chordata");
+    class = prompt("Enter Sea Animal's Class", "Actinopterygii");
+    order = prompt("Enter Sea Animal's Order", "Perciformes");
+    family = prompt("Enter Sea Animal's Family", "Pomacentridae");
+    genus = prompt("Enter Sea Animal's Genus", "Amphiprion");
+    scientificName = prompt("Enter Sea Animal's Scientific Name", "Amphiprion ocellaris");
+    lifeSpan = prompt("Enter Sea Animal's Life Span", "3-5 years");
+    interestFact = prompt("Enter an Interesting Fact about the Sea Animal", "A clownfish can change from male to female");
+
+
+    document.write("<div align=\"center\"><h1> CS177 Virtual Aquarium </h1></div>");
+    document.write("<div align=\"center\"><img src=\"" + animalNumber + ".jpg\"></div>");
+    document.write("<div align=\"center\"><h2>" + commonName + " \(" + scientificName + "\)</h2></div>");
+    document.write("<table border=\"1\" align=\"center\">");
+    document.write("<tr><td><b>Kingdom:</b></td><td>" + kingdom + "</td></tr>");
+    document.write("<tr><td><b>Phylum:</b></td><td>" + phylum + "</td></tr>");
+    document.write("<tr><td><b>Class:</b></td><td>" + class + "</td></tr>");
+    document.write("<tr><td><b>Order:</b></td><td>" + order + "</td></tr>");
+    document.write("<tr><td><b>Family:</b></td><td>" + family + "</td></tr>");
+    document.write("<tr><td><b>Genus:</b></td><td>" + genus + "</td></tr>");
+    document.write("<tr><td><b>Lifespan:</b></td><td>" + lifeSpan + "</td></tr>");
+    document.write("<tr><td><b>An Interesting Fact:</b></td><td>" + interestFact + "</td></tr></table>");
+  </script>
+ </body>
+</html>

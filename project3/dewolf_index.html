@@ -1,0 +1,33 @@
+<html>
+<!-- Bacteria Growth Control     CS177    0101 -->
+<!-- Dustin Wolf   10/27/06  updated: 11/1/06  -->
+ <head>
+  <title> CS177 Project 3 - The Bacteria Growth Control </title>
+  <!-- This is where the randomIntFunction was called. Dustin Wolf 11/1/06 -->
+  <script type="text/javascript" src="http://www.prenhall.com/reed/random.js"></script>
+  <!--  This is where the functions killBactria and growBacteria are located Dustin Wolf 11/1/06 -->
+  <script type="text/javascript" src="bacteria.js">
+  </script>
+ </head>
+ <body>
+ <script type="text/javascript">
+ // start is equal to negative one and the experiment doesn't work until startExperiment is called Dustin Wolf 11/1/06 //
+ start = -1;
+ </script>
+  <h1 align="center"> The Bacteria Growth Control </h1>
+  <form name="bacteriaForm"><div align="center">
+   The growing period of the bacteria (in minutes):
+    <input type="text" name="period" value="" /> <br /><br /><!-- Text box for Period. Dustin Wolf 11/1/06 -->
+   The initial number of bacteria:
+    <input type="text" name="init_value" value="" /><br /><!-- Text box for Initial Bacteria. Dustin Wolf 11/1/06 -->
+   The current number of bacteria:
+    <input type="text" name="current" value="" /><br /><br /><!-- Text box for current Bacteria. Dustin Wolf 11/1/06 -->
+   <table>
+    <tr><td rowspan="1"><img src="ecoli.jpg" name="bacteriaImage" /></td><td rowspan="3"><textarea name="history" rows="20" cols="50" wrap="virtual" />The history of your experiment will be displayed here.</textarea></td></tr>
+    <tr><th> <input type="button" value="Start a new experiment!" onClick="startExperiment()" /></td></tr><!-- Button Start Experiment Dustin Wolf 11/1/06 -->
+                                                                                        <!-- Buttons for growBacteria and killBacteria Dustin Wolf 11/1/06 -->
+    <tr><th> <input type="button" value="Grow bacteria!" onClick="growBacteria()" />&nbsp<input type="button" value="Kill bacteria!" onClick="killBacteria()" /></td></tr> 
+   </table>
+  </form>
+ </body>
+</html>
